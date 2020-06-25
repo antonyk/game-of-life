@@ -123,8 +123,10 @@ yarn-error.log*
 
 # TernJS port file
 .tern-port
+
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
+# .env.local
+# .env.development.local
+# .env.test.local
+# .env.production.local

@@ -1,0 +1,21 @@
+
+.cell {
+  width: 20;
+  height: 20;
+  border: solid 1px black;
+  background-color: white;
+}
+
+.cell_on {
+  background-color: green;
+}
+
+.board {
+  background-color: gray;
+}
+
+.grid {
+  border: solid thin red;
+  /* background-color: gray; */
+  display: grid;
+}
