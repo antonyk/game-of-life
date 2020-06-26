@@ -6,6 +6,9 @@ import styles from './Board.module.css'
 // let's assume board = grid
 
 import { useState } from "react"
+import deepcopy from 'deepcopy'
+import produce from 'immer'
+import { Button } from './Button'
 
 function buildGrid(rows, cols) {
   return Array(rows).fill(Array(cols).fill(0))
@@ -14,14 +17,26 @@ function buildGrid(rows, cols) {
 const numRows = 25,
       numCols = 25
 
+// function toggleCell(i,j) {
+
+// }
+
 export default function Board() {
+  const [isRunning, setIsRunning] = useState(false)
 
   const [grid, setGrid] = useState(buildGrid(numRows, numCols))
 
-  console.log(grid)
+  // console.log(grid)
+
+  // phase 1: re-assign the whole grid on a single, manual toggle
 
   return (
     <>
+    <button
+      onClick={() => setIsRunning(!isRunning)}
+    >
+      {isRunning ? "Stop" : "Start"}
+    </button>
     <div 
       className={styles.grid}
       style={{
@@ -33,7 +48,13 @@ export default function Board() {
     >
       {grid.map((row,i) => row.map((cell,j) => {
           return (
-            <div 
+            <div
+              onClick={() => {
+                const gridBuffer = produce(grid, newGrid => {
+                  newGrid[i][j] = Number(!grid[i][j])
+                })
+                setGrid(gridBuffer)
+              }}
               key={`${i}${j}`}
               style={{
                 width: 20,
@@ -49,6 +70,5 @@ export default function Board() {
     </div>
     </>
   )
-
 
 }
