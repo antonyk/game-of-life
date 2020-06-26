@@ -15,7 +15,10 @@
 }
 
 .grid {
-  border: solid thin red;
+  /* border: solid thin red; */
   /* background-color: gray; */
   display: grid;
+}
+.action {
+  margin: 10 15 5 15;
 }

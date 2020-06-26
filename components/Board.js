@@ -89,7 +89,7 @@ export default function App() {
   }, [])
 
   function startStopHandler(e) {
-    e.preventDefault()
+    // e.preventDefault()
     setIsRunning(!isRunning)
     if (!isRunning) {
       simStateRef.current = true
@@ -98,7 +98,7 @@ export default function App() {
   }
 
   function cellToggleHandler(e, i, j, isRunning) {
-    e.preventDefault()
+    // e.preventDefault()
     if (isRunning) {
       return
     }
@@ -106,11 +106,25 @@ export default function App() {
       copy[i][j] = Number(!grid[i][j])
     }))
   }
+  function clearBoardHandler(isRunning) {
+    // e.preventDefault()
+    if (isRunning) {
+      return
+    }
+    setGrid(buildGrid(numRows, numCols, 0))
+  }
 
   return (
     <>
-      <button onClick={startStopHandler}>
+      <button 
+        className={styles.action}
+        onClick={startStopHandler}>
         {isRunning ? "STOP" : "START"}
+      </button>
+      <button 
+        className={styles.action}
+        onClick={() => clearBoardHandler(isRunning)}>
+        CLEAR
       </button>
       <div 
         className={styles.grid}
