@@ -97,8 +97,11 @@ export default function App() {
     }
   }
 
-  function cellToggleHandler(e, i, j) {
+  function cellToggleHandler(e, i, j, isRunning) {
     e.preventDefault()
+    if (isRunning) {
+      return
+    }
     setGrid(produce(grid, copy => {
       copy[i][j] = Number(!grid[i][j])
     }))
@@ -119,7 +122,7 @@ export default function App() {
       >
         {grid.map((row, i) => row.map((col, j) => (
           <div 
-            onClick={(e) => cellToggleHandler(e, i, j)}
+            onClick={(e) => cellToggleHandler(e, i, j, isRunning)}
             // className={`${styles.cell}${cell === 1 ? ' '+styles.cell_on : ''}`}
             key={`${i}${j}`}
             style={{
