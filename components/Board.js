@@ -83,19 +83,21 @@ export default function App() {
   const simStateRef = useRef(isRunning)
   simStateRef.current = isRunning // fixes sync issue
 
-  const simulate = useCallback(() => {
+  const simulate = () => {
     if (!simStateRef.current) {
       return;
     }
     // run simulation here recursively until stop condition
     // generate a new grid based on current
     // wait a while
+    setGeneration(generation + 1)
     setGrid((curGrid) => {
       return getNewGeneration(curGrid)
     })
-
+    
     setTimeout(simulate, duration)
-  }, [])
+  }
+
 
   function startStopHandler(e) {
     // e.preventDefault()
@@ -120,6 +122,7 @@ export default function App() {
     if (isRunning) {
       return
     }
+    setGeneration(0)
     setGrid(buildGrid(numRows, numCols))
   }
   function speedupSimulationHandler() {
@@ -136,8 +139,9 @@ export default function App() {
     if (isRunning) {
       return
     }
+    setGeneration(0)
     const newGrid = buildGrid(numRows, numCols, true)
-    console.log(newGrid)
+    // console.log(newGrid)
     setGrid(newGrid)
   }
 
@@ -192,6 +196,9 @@ export default function App() {
             }}
           />)))
         }
+      </div>
+      <div>
+        Generation: {generation}
       </div>
     </>
   )
