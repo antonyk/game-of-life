@@ -4,48 +4,51 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Conway's Game of Life</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to Conway's <a href="http://localhost:3000/game">Game of Life</a>
         </h1>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
+          <a href="http://localhost:3000/game" className="card">
+            <h3>Play &rarr;</h3>
+            <p>A Web Application which simulates Conway's Game of Life.</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className="card">
+          <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" className="card">
             <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+            <p>Read and learn more about the game, its history and its implications.</p>
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
+            href="https://github.com/antonyk/game-of-life"
             className="card"
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+            <h3>Source &rarr;</h3>
+            <p>See the source code behind this application here on Github.</p>
           </a>
 
           <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="https://github.com/antonyk/"
             className="card"
           >
-            <h3>Deploy &rarr;</h3>
+            <h3>About &rarr;</h3>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              Find out more about the people behind this application.
             </p>
           </a>
         </div>
+        {/* <a href="http://localhost:3000/game" className="card">
+          <h3>Play &rarr;</h3>
+          <p>Play A Simulation of Conway's Game of Life</p>
+          <p className="description">
+            Go to the <code>Game</code>
+          </p>
+        </a> */}
       </main>
 
       <footer>
@@ -54,8 +57,8 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+          Powered by NextJS, ReactJS and Heroku {' '}
+          {/* <img src="/vercel.svg" alt="Vercel Logo" className="logo" /> */}
         </a>
       </footer>
 
