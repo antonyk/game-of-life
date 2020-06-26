@@ -31,8 +31,17 @@ const offsets = [
 // function readLiveBuffer(buffer) {}
 // function readPastBuffer(buffer) {}
 
-function buildGrid(rows, cols, val) {
-  return Array(rows).fill(Array(cols).fill(val))
+function buildGrid(rows, cols, randomize = false, density = 0.2, val = 0) {
+  if (randomize) {
+    const newGrid = []
+    for (let i=0; i < rows; i++) {
+      newGrid.push(Array.from(Array(cols), () => Math.random() > density ? 0 : 1))
+    }
+    return newGrid
+ }
+  else {
+    return Array(rows).fill(Array(cols).fill(val))
+  }
 }
 
 function getNewGeneration(grid) {
@@ -68,7 +77,7 @@ export default function App() {
   const [numRows, setNumRows] = useState(defaultSize)
   const [numCols, setNumCols] = useState(defaultSize)
   const [isRunning, setIsRunning] = useState(false)
-  const [grid, setGrid] = useState(buildGrid(defaultSize, defaultSize, 0))
+  const [grid, setGrid] = useState(buildGrid(defaultSize, defaultSize))
   const [generation, setGeneration] = useState(0)
   // const [buffer, setBuffer] = useState(doubleBuffer)
   const simStateRef = useRef(isRunning)
@@ -111,11 +120,32 @@ export default function App() {
     if (isRunning) {
       return
     }
-    setGrid(buildGrid(numRows, numCols, 0))
+    setGrid(buildGrid(numRows, numCols))
+  }
+  function speedupSimulationHandler() {
+    if (duration > 100) {
+      setDuration(duration - 100)
+    }
+  }
+  function slowdownSimulationHandler() {
+    if (duration < 3000) {
+      setDuration(duration + 100)
+    }
+  }
+  function randomizeBoardHandler(isRunning) {
+    if (isRunning) {
+      return
+    }
+    const newGrid = buildGrid(numRows, numCols, true)
+    console.log(newGrid)
+    setGrid(newGrid)
   }
 
   return (
     <>
+      <span>
+        {`Speed: ${Math.round(duration)}ms/gen`}
+      </span>
       <button 
         className={styles.action}
         onClick={startStopHandler}>
@@ -125,6 +155,21 @@ export default function App() {
         className={styles.action}
         onClick={() => clearBoardHandler(isRunning)}>
         CLEAR
+      </button>
+      <button 
+        className={styles.action}
+        onClick={() => slowdownSimulationHandler()}>
+        SLOW DOWN
+      </button>
+      <button 
+        className={styles.action}
+        onClick={() => speedupSimulationHandler()}>
+        SPEED UP
+      </button>
+      <button 
+        className={styles.action}
+        onClick={() => randomizeBoardHandler(isRunning)}>
+        RANDOMIZE
       </button>
       <div 
         className={styles.grid}
