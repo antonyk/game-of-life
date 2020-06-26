@@ -31,11 +31,11 @@ const offsets = [
 // function readLiveBuffer(buffer) {}
 // function readPastBuffer(buffer) {}
 
-function buildGrid(rows, cols, randomize = false, val = 0) {
+function buildGrid(rows, cols, randomize = false, density = 0.2, val = 0) {
   if (randomize) {
     const newGrid = []
     for (let i=0; i < rows; i++) {
-      newGrid.push(Array.from(Array(cols), () => Math.random() > 0.2 ? 0 : 1))
+      newGrid.push(Array.from(Array(cols), () => Math.random() > density ? 0 : 1))
     }
     return newGrid
  }
@@ -143,6 +143,9 @@ export default function App() {
 
   return (
     <>
+      <span>
+        {`Speed: ${Math.round(duration)}ms/gen`}
+      </span>
       <button 
         className={styles.action}
         onClick={startStopHandler}>
@@ -153,12 +156,9 @@ export default function App() {
         onClick={() => clearBoardHandler(isRunning)}>
         CLEAR
       </button>
-      <span>
-        {`Speed: ${Math.round(duration)}ms/gen`}
-      </span>
       <button 
         className={styles.action}
-        onClick={() => speedupSimulationHandler()}>
+        onClick={() => slowdownSimulationHandler()}>
         SLOW DOWN
       </button>
       <button 
