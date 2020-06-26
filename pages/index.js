@@ -10,11 +10,11 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to Conway's <a href="http://localhost:3000/game">Game of Life</a>
+          Welcome to Conway's <a href="/game">Game of Life</a>
         </h1>
 
         <div className="grid">
-          <a href="http://localhost:3000/game" className="card">
+          <a href="/game" className="card">
             <h3>Play &rarr;</h3>
             <p>A Web Application which simulates Conway's Game of Life.</p>
           </a>
