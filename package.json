@@ -10,7 +10,7 @@
   "dependencies": {
     "deepcopy": "^2.0.0",
     "immer": "^8.0.1",
-    "next": "9.4.4",
+    "next": "^10.0.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "sass": "^1.26.9"
