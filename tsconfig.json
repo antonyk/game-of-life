@@ -1,7 +1,4 @@
 {
-  "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"],
-
   "compilerOptions": {
     "allowJs": true,
     "alwaysStrict": true,
@@ -20,5 +17,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }
