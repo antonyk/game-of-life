@@ -1,5 +1,5 @@
 # Conway's Game of Life
 
-A web-based implementation of Conway's game of life using React.js and Next.js
+A web-based implementation of Conway's game of life using React.js, Next.js, TypeScript and Tailwind CSS.
 
-- See the live demo here: https://game-of-life-rose.vercel.app/
+- See a live demo on Vercel here: https://game-of-life-rose.vercel.app/
